@@ -57,9 +57,30 @@
             font-style: italic;
         }
 
-        /* Slideshow Container */
-        .slideshow-container {
-            position: relative;
+        /* Top Button Styling */
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4);
+            margin-bottom: 30px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .btn:hover {
+            background-color: #ff4757;
+            transform: scale(1.05);
+        }
+
+        /* Image & Frame Containers */
+        .photo-container {
             width: 100%;
             max-width: 400px;
             margin: 0 auto 25px auto;
@@ -70,14 +91,27 @@
             background-color: white;
         }
 
-        .mySlides {
-            display: none;
-        }
-
-        .slideshow-img {
+        .display-img {
             width: 100%;
             height: auto;
             display: block;
+        }
+
+        /* Slideshow Layout */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 20px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 5px solid white;
+            background-color: white;
+        }
+
+        .mySlides {
+            display: none;
         }
 
         /* Next & previous buttons */
@@ -110,7 +144,7 @@
             background-color: rgba(0, 0, 0, 0.7);
         }
 
-        /* Message Card styled perfectly under the slideshow */
+        /* Message Card Styling */
         .card {
             border-left: 5px solid var(--primary-color);
             background: #f9f9f9;
@@ -122,45 +156,14 @@
             font-size: 1.05rem;
         }
 
-        /* Avatar Photo Container at the bottom */
-        .avatar-container {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto 25px auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border: 5px solid white;
-            background-color: white;
-        }
-
-        .caption {
-            margin-top: 10px;
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-            font-weight: 600;
+        /* Sentence at the bottom */
+        .caption-bottom {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
             color: #d63031;
             font-style: italic;
-        }
-
-        /* Button */
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4);
-            margin-top: 10px;
-        }
-
-        .btn:hover {
-            background-color: #ff4757;
-            transform: scale(1.05);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
         }
 
         #confetti-canvas {
@@ -188,39 +191,35 @@
         <h1>Happy Birthday, Santy! 🎂</h1>
         <p class="subtitle">Wishing you a beautiful day! ✨</p>
 
-        <!-- 1. THE TWO REAL PHOTOS (Slideshow: both of you & Pool) -->
-        <div class="slideshow-container">
-            <div class="mySlides">
-                <img src="santota.jpg" alt="Photo together" class="slideshow-img">
-            </div>
-            <div class="mySlides">
-                <img src="santy2.jpg" alt="Pool photo" class="slideshow-img">
-            </div>
-            
-            <!-- Slide Controls -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <button class="btn" onclick="triggerCelebration()">Click for a Surprise! 🎉</button>
+
+        <div class="photo-container">
+            <img src="santy.jpg" alt="Santy Avatar" class="display-img">
         </div>
 
-        <!-- 2. YOUR SPEECH CARD (Directly below the slideshow) -->
         <div class="card">
             <p><strong>Dear Santy,</strong></p>
             <br>
             <p>I am so so sorry that I've been being mean t u a lot and making u sad, sry u forgot, but HAPPY BIRTHDAY to the sweetest girlll snd wish u all the happiness in the world.</p>
         </div>
 
-        <!-- 3. AVATAR PHOTO WITH CAPTION (At the very bottom) -->
-        <div class="avatar-container">
-            <img src="santy.jpg" alt="Santy Avatar" class="slideshow-img">
-            <div class="caption">the prettiest sister of the bride to be!!</div>
+        <div class="slideshow-container">
+            <div class="mySlides">
+                <img src="santota.jpg" alt="Photo together" class="display-img">
+            </div>
+            <div class="mySlides">
+                <img src="santy2.jpg" alt="Pool photo" class="display-img">
+            </div>
+            
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
 
-        <!-- Surprise Button -->
-        <button class="btn" onclick="triggerCelebration()">Click for a Surprise! 🎉</button>
+        <div class="caption-bottom">the prettiest sister of the bride to be!!</div>
     </div>
 
     <script>
-        // Global variable for our failsafe audio player
+        // Global variable for our music player
         let birthdayAudio = null;
 
         // Slideshow Logic
@@ -242,24 +241,23 @@
             slides[slideIndex-1].style.display = "block";  
         }
 
-        // Failsafe Surprise Button Logic
+        // Surprise Button Action (Confetti + Music)
         function triggerCelebration() {
-            // Build the audio tracking completely dynamic on the fly
             if (!birthdayAudio) {
+                // If your file on GitHub is "Song.mp3", change 'song.mp3' to 'Song.mp3' right below:
                 birthdayAudio = new Audio('song1.mp3');
                 birthdayAudio.loop = true;
             }
             
-            // Safe play invocation
             birthdayAudio.play().catch(function(error) {
-                console.log("Audio play request failed: ", error);
+                console.log("Audio playback blocked or failed:", error);
             });
 
-            // Fire confetti burst
+            // Confetti effect
             confetti({ 
                 particleCount: 150, 
                 spread: 80, 
-                origin: { y: 0.6 } 
+                origin: { y: 0.3 } // Adjusted higher to pop from near the top button
             });
         }
     </script>
