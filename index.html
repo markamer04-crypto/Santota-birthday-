@@ -170,3 +170,200 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Santy! 🎉</title>
+    <style>
+        :root {
+            --primary-color: #ff6b81;
+            --secondary-color: #f7d794;
+            --text-color: #2c3e50;
+            --bg-grad-1: #ffeaa7;
+            --bg-grad-2: #ff7675;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2));
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 100%;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        /* Gallery/Photos Layout */
+        .photo-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 25px;
+            align-items: center;
+        }
+
+        .birthday-img-container {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 5px solid white;
+            background-color: white;
+        }
+
+        .birthday-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .caption {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #d63031;
+            font-style: italic;
+        }
+
+        /* Message Card */
+        .card {
+            border-left: 5px solid var(--primary-color);
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        /* Interactive Button */
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #ff4757;
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Canvas for confetti */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="container">
+        <h1>Happy Birthday, Santy! 🎂</h1>
+        <p class="subtitle">Wishing you a beautiful day! ✨</p>
+
+        <!-- Photo Section -->
+        <div class="photo-gallery">
+            <!-- Photo of Santy & You -->
+            <div class="birthday-img-container">
+                <img src="santy.jpg" alt="Santy" class="birthday-img">
+            </div>
+
+            <!-- Photo of Santota with Caption -->
+            <div class="birthday-img-container">
+                <img src="santota.jpg" alt="Santota" class="birthday-img">
+                <div class="caption">the prettiest sister of the bride to be!!</div>
+            </div>
+        </div>
+
+        <!-- Birthday Letter/Message -->
+        <div class="card">
+            <p><strong>Dear Santy,</strong></p>
+            <br>
+            <p>I am so so sorry that I've been being mean t u a lot and making u sad, sry u forgot, but HAPPY BIRTHDAY to the sweetest girlll snd wish u all the happiness in the world.</p>
+        </div>
+
+        <!-- Interactive Surprise Button -->
+        <button class="btn" onclick="triggerCelebration()">Click for a Surprise! 🎉</button>
+    </div>
+
+    <script>
+        // Confetti Burst Effect
+        function triggerCelebration() {
+            confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
+        }
+
+        // Auto-burst once on page load
+        window.onload = function() {
+            setTimeout(triggerCelebration, 500);
+        };
+    </script>
+</body>
+</html>
